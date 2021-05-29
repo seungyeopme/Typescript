@@ -30,7 +30,7 @@ function fetchUser() {
 }
 
 fetchUser().then(function (response) {
-  response.address.
+  response.address.city
 })
 
 // console.log(fetchUser());
