@@ -25,8 +25,16 @@ interface Person1 {
     name: string;
     age: number;
 }
-function askSomeone(someone: Developer1 | Person1) {
+// function askSomeone(someone: Developer1 | Person1) {
+//     someone.name;
+//     someone.skill;
+//     someone.age;
+// }
+function askSomeone(someone: Developer1 & Person1) {
     someone.name;
     someone.skill;
     someone.age;
 }
+
+// var sy: string | number | boolean;
+// var boss: string & number & boolean;
