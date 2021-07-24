@@ -4,6 +4,7 @@
 // import {} from '파일 상대 경로';
 
 import axios from 'axios';
+import Chart from 'chart.js';
 
 // utils
 function $(selector: string) {
