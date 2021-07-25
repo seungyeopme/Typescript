@@ -3,7 +3,7 @@
 // // 변수, 함수 임포트 문법
 // import {} from '파일 상대 경로';
 
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import * as Chart from 'chart.js';
 
 // utils
@@ -45,6 +45,24 @@ function createSpinnerElement(id: string) {
 let isDeathLoading = false;
 const isRecoveredLoading = false;
 
+interface CovidSummaryResponse {
+  Countries: any[];
+  Date: string;
+  Global: any;
+  Message: string;
+  // Date: "2021-07-25T05:56:25.112Z"
+  // Global: {NewConfirmed: 590902, TotalConfirmed: 193141060, NewDeaths: 8051, TotalDeaths: 4145276,…}
+  // Date: "2021-07-25T05:56:25.112Z"
+  // NewConfirmed: 590902
+  // NewDeaths: 8051
+  // NewRecovered: 250717
+  // TotalConfirmed: 193141060
+  // TotalDeaths: 4145276
+  // TotalRecovered: 127057668
+  // ID: "51ff67c5-4f4f-4950-9e16-87703f7c9f8f"
+  // Message: ""
+}
+
 /**
  * @typedef {object} CovidSummary
  * @property {Array<object>} Country
@@ -54,13 +72,14 @@ const isRecoveredLoading = false;
 /**
  * @returns {Promise<CovidSummary>}
  */
-function fetchCovidSummary() {
+function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
   const url = 'https://api.covid19api.com/summary';
   return axios.get(url);
 }
-fetchCovidSummary().then((res: any) => {
-  console.log(res.C);
-});
+fetchCovidSummary().then(res => res.data.Countries);
+// fetchCovidSummary().then((res: any) => {
+//   console.log(res.C);
+// });
 
 enum CovidStatus {
   Confirmed = 'confirmed',
