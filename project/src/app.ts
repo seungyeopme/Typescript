@@ -61,7 +61,7 @@ function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
   const url = 'https://api.covid19api.com/summary';
   return axios.get(url);
 }
-fetchCovidSummary().then(res => res.data.);
+// fetchCovidSummary().then(res => res.data.);
 // fetchCovidSummary().then((res: any) => {
 //   console.log(res.C);
 // });
@@ -73,9 +73,9 @@ enum CovidStatus {
 }
 
 function fetchCountryInfo(
-    countryCode: string, 
-    status: CovidStatus
-  ): Promise<AxiosResponse<CountrySummaryResponse>> {
+  countryCode: string,
+  status: CovidStatus
+): Promise<AxiosResponse<CountrySummaryResponse>> {
   // status params: confirmed, recovered, deaths
   const url = `https://api.covid19api.com/country/${countryCode}/status/${status}`;
   return axios.get(url);
@@ -233,7 +233,7 @@ function setChartData(data: any) {
   renderChart(chartData, chartLabel);
 }
 
-function setTotalConfirmedNumber(data: any) {
+function setTotalConfirmedNumber(data: CovidSummaryResponse) {
   confirmedTotal.innerText = data.Countries.reduce(
     (total: any, current: any) => (total += current.TotalConfirmed),
     0
