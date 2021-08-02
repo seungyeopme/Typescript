@@ -15,8 +15,9 @@ import {
 } from './covid/index';
 
 // utils
-function $(selector: string) {
-  return document.querySelector(selector);
+function $<T extends HTMLElement = HTMLDivElement>(selector: string) {
+  const element = document.querySelector(selector);
+  return element as T;
 }
 function getUnixTimestamp(date: Date | string) {
   return new Date(date).getTime();
@@ -24,7 +25,9 @@ function getUnixTimestamp(date: Date | string) {
 
 // DOM
 // let a: Element | HTMLElement | HTMLParagraphElement;
-const confirmedTotal = $('.confirmed-total') as HTMLSpanElement;
+// const temp = $<HTMLParagraphElement>('.abc');
+const temp = $('.abc');
+const confirmedTotal = $<HTMLSpanElement>('.confirmed-total');
 const deathsTotal = $('.deaths') as HTMLParagraphElement;
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
 const lastUpdatedTime = $('.last-updated-time') as HTMLParagraphElement;
